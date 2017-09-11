@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`kwc-challenge-set-listing`
+To display all the step-by-step challenge sets available to the user
+
+@demo demo/index.html
+-->
+
+<dom-module id="kwc-challenge-set-listing">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'kwc-challenge-set-listing',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'kwc-challenge-set-listing',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
