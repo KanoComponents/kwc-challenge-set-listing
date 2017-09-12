@@ -40,12 +40,18 @@ To display all the step-by-step challenge sets available to the user
             is: 'kwc-challenge-set-listing',
 
             properties: {
+                /*
+                 * An array of challenge set objects. A <kwc-challenge-set> element is rendered for each set.
+                 */
                 challengeSets: {
                     type: Array,
                     value: () => {
                         return [];
                     }
                 },
+                /*
+                 * An url for the current user's avatar
+                 */
                 userAvatarUrl: {
                     type: String,
                     value: null
@@ -54,6 +60,9 @@ To display all the step-by-step challenge sets available to the user
                     type: String,
                     computed: '_computeAvatar(userAvatarUrl)'
                 },
+                /*
+                 * A dictionary of challenge categories containing an array of challenge ids that have been completed for each category.
+                 */
                 completedChallenges: {
                     type: Object,
                     value: () => {

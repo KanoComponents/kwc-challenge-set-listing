@@ -82,16 +82,19 @@
             var challengeSets = document.getElementById('basic-list');
             challengeSets.challengeSets = trainingSets;
             challengeSets.completedChallenges = completedChallenges;
+            challengeSets.addEventListener('open-kano-code', function(e){
+                // document.getElementById('one').appendChild(document.createTextNode("You clicked on " + e.detail.slug));
+                alert("You clicked on " + e.detail.slug);
+            });
         });
     </script>
   </head>
   <body>
     <div class="vertical-section-container centered" style="min-width:800px">
       <h3>Basic kwc-challenge-set-listing demo</h3>
-      <demo-snippet>
+      <demo-snippet id="one">
         <template>
-          <kwc-challenge-set-listing id="basic-list" >
-    </kwc-challenge-set-listing>
+          <kwc-challenge-set-listing id="basic-list" ></kwc-challenge-set-listing>
         </template>
       </demo-snippet>
     </div>
