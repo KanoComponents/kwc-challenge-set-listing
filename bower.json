@@ -4,7 +4,7 @@
   "main": "kwc-challenge-set-listing.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.9.0",
-    "kwc-challenge-set": "git@github.com:KanoComponents/kwc-challenge-set.git#develop"
+    "kwc-challenge-set": "git@github.com:KanoComponents/kwc-challenge-set.git"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
