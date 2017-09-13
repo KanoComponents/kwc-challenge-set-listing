@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -10,21 +11,106 @@
     <script src="../../web-component-tester/browser.js"></script>
 
     <link rel="import" href="../kwc-challenge-set-listing.html">
-  </head>
-  <body>
+</head>
+
+<body>
     <test-fixture id="basic">
-      <template>
-        <kwc-challenge-set-listing></kwc-challenge-set-listing>
-      </template>
+        <template>
+            <kwc-challenge-set-listing></kwc-challenge-set-listing>
+        </template>
     </test-fixture>
 
     <script>
-      suite('kwc-challenge-set-listing', function() {
-        test('instantiating the element works', function() {
-          var element = fixture('basic');
-          assert.equal(element.is, 'kwc-challenge-set-listing');
+        var challengeSets = [
+            {
+                "title": "Flash and draw the lights",
+                "description": "Turn on lights, change colors, make them move and sparkle. Paint pictures, learn to make frame by frame animations.",
+                "category": "kano-code-challenges-pixel-intro",
+                "medal-disabled": "static/challenges/training/pixel_medal_disabled.svg",
+                "medal-enabled": "static/challenges/training/pixel_intro.svg",
+                "challenges": [
+                    {
+                        "title": "Pixel lights on",
+                        "slug": "pixel_intro_1"
+                    },
+                    {
+                        "title": "Pixel color picker",
+                        "slug": "pixel_intro_2"
+                    },
+                    {
+                        "title": "Pixel color random loop",
+                        "slug": "pixel_intro_3"
+                    },
+                    {
+                        "title": "Pixel point",
+                        "slug": "pixel_intro_4"
+                    }
+                ]
+            },
+            {
+                "title": "Microphone magic",
+                "description": "Use the Pixel Kit microphone, make lights dance to music, turn on and off when you clap. Scream, shout, sing.",
+                "category": "kano-code-challenges-pixel-mic",
+                "medal-disabled": "static/challenges/training/pixel_medal_disabled.svg",
+                "medal-enabled": "static/challenges/training/pixel_mic.svg",
+                "challenges": [
+                    {
+                        "title": "Microphone 1",
+                        "slug": "pixel_mic_1"
+                    },
+                    {
+                        "title": "Microphone 2",
+                        "slug": "pixel_mic_2"
+                    },
+                    {
+                        "title": "Microphone 3",
+                        "slug": "pixel_mic_3"
+                    },
+                    {
+                        "title": "Microphone 4",
+                        "slug": "pixel_mic_4"
+                    },
+                    {
+                        "title": "Microphone 5",
+                        "slug": "pixel_mic_5"
+                    }
+                ]
+            }
+        ],
+            completedChallenges = {
+                "kano-code-challenges-pixel-intro": 1,
+                "kano-code-challenges-pixel-mic": 5
+            };
+
+        suite('kwc-challenge-set-listing', function () {
+            test('instantiating the element works', function () {
+                var element = fixture('basic');
+                assert.equal(element.is, 'kwc-challenge-set-listing');
+            });
         });
-      });
+
+        suite('default-behaviour', function () {
+            var element;
+            setup(function () {
+                element = fixture('basic');
+                element.challengeSets = challengeSets;
+                element.completedChallenges = completedChallenges;
+            });
+
+            test('instantiating the default element works', function () {
+                assert.equal(element.is, 'kwc-challenge-set-listing');
+            });
+
+            test('there is one challenge set element for each challenge set in the challengeSets object', function (done) {
+                flush(function () {
+                    var cElms = Polymer.dom(element.root).querySelectorAll('kwc-challenge-set');
+                    assert.lengthOf(cElms, challengeSets.length);
+                    done();
+                });
+            });
+
+        });
     </script>
-  </body>
+</body>
+
 </html>

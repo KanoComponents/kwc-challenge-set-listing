@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../kwc-challenge-set/kwc-challenge-set.html">
+<link rel="import" href="./scripts/progressIcons.html">
 
 <!--
 `kwc-challenge-set-listing`
@@ -8,27 +10,80 @@ To display all the step-by-step challenge sets available to the user
 -->
 
 <dom-module id="kwc-challenge-set-listing">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+             :host {
+                display: block;
+            }
+            kano-display-training {
+                margin: auto;
+                max-width: 700px;
+            }
+        </style>
 
-  <script>
-    Polymer({
+        <template is="dom-repeat" items="[[challengeSets]]" as="challengeSet">
 
-      is: 'kwc-challenge-set-listing',
+            <kwc-challenge-set
+                label="Challenge Set"
+                challenge-set="[[challengeSet]]"
+                progress="[[_computeCategoryProgress(challengeSet.category, completedChallenges)]]"
+                avatar-url="[[_userAvatarUrl]]">
+            </kwc-challenge-set>
 
-      properties: {
-        prop1: {
-          type: String,
-          value: 'kwc-challenge-set-listing',
-        },
-      },
+        </template>
 
-    });
-  </script>
+    </template>
+
+    <script>
+
+        Polymer({
+
+            is: 'kwc-challenge-set-listing',
+
+            properties: {
+                /*
+                 * An array of challenge set objects. A <kwc-challenge-set> element is rendered for each set.
+                 */
+                challengeSets: {
+                    type: Array,
+                    value: () => {
+                        return [];
+                    }
+                },
+                /*
+                 * An url for the current user's avatar
+                 */
+                userAvatarUrl: {
+                    type: String,
+                    value: null
+                },
+                _userAvatarUrl: {
+                    type: String,
+                    computed: '_computeAvatar(userAvatarUrl)'
+                },
+                /*
+                 * A dictionary of challenge categories containing an array of challenge ids that have been completed for each category.
+                 */
+                completedChallenges: {
+                    type: Object,
+                    value: () => {
+                        return {};
+                    }
+                },
+            },
+            _computeAvatar (userAvatarUrl) {
+                if (userAvatarUrl) {
+                    return userAvatarUrl;
+                } else {
+                    return KWCCHALLENGESETLISTassets.avatar;
+                }
+            },
+            _computeCategoryProgress (category, progress) {
+                if (!category || !progress) {
+                    return 0;
+                }
+                return progress[category];
+            },
+        });
+    </script>
 </dom-module>
