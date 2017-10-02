@@ -79,11 +79,16 @@
         };
 
         document.addEventListener('WebComponentsReady', () => {
-            var challengeSets = document.getElementById('basic-list');
+            let challengeSets = document.getElementById('basic-list');
             challengeSets.challengeSets = trainingSets;
             challengeSets.completedChallenges = completedChallenges;
             challengeSets.addEventListener('open-kano-code', function(e){
-                // document.getElementById('one').appendChild(document.createTextNode("You clicked on " + e.detail.slug));
+                alert("You clicked on " + e.detail.slug);
+            });
+            challengeSets = document.getElementById('user-list');
+            challengeSets.challengeSets = trainingSets;
+            challengeSets.completedChallenges = completedChallenges;
+            challengeSets.addEventListener('open-kano-code', function(e){
                 alert("You clicked on " + e.detail.slug);
             });
         });
@@ -94,7 +99,12 @@
       <h3>Basic kwc-challenge-set-listing demo</h3>
       <demo-snippet id="one">
         <template>
-          <kwc-challenge-set-listing id="basic-list" ></kwc-challenge-set-listing>
+            <kwc-challenge-set-listing id="basic-list" ></kwc-challenge-set-listing>
+            <h2>With user avatar</h2>
+            <kwc-challenge-set-listing
+                id="user-list"
+                user-avatar-url="/demo/static/avatar.svg" >
+            </kwc-challenge-set-listing>
         </template>
       </demo-snippet>
     </div>
