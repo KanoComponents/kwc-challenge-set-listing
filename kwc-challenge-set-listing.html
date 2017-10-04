@@ -27,6 +27,8 @@ To display all the step-by-step challenge sets available to the user
                 challenge-set="[[challengeSet]]"
                 progress="[[_computeCategoryProgress(challengeSet.category, completedChallenges)]]"
                 avatar-url="[[userAvatarUrl]]"
+                show-medals="[[showMedals]]"
+                on-disabled-medal-clicked="_onDisabledMedalClicked"
                 disabled$="[[_computeDisabled(challengeSet.*, disabledChallengeSets.*)]]">
             </kwc-challenge-set>
 
@@ -80,6 +82,16 @@ To display all the step-by-step challenge sets available to the user
                     value: () => {
                         return {};
                     }
+                },
+                /**
+                 * Flags if, after completing a challenge set, the user
+                 * should see the medal (badges) unlocked in the challenge
+                 * set circle.
+                 * @type {Boolean}
+                 */
+                showMedals: {
+                    type: Boolean,
+                    value: false
                 }
             },
             /**
