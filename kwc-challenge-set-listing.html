@@ -111,8 +111,18 @@ To display all the step-by-step challenge sets available to the user
              * @param {Object} challengeSet A "challenge set" data object
              * @return {Boolean}
              */
-            _computeDisabled (challengeSets, disabledChallengeSets) {
-                return disabledChallengeSets.base.indexOf(challengeSets.base.category) !== -1;
+            _computeDisabled (challengeSet, disabledChallengeSets) {
+                return disabledChallengeSets.base.indexOf(challengeSet.base.category) !== -1;
+            },
+            /**
+             * Proxy `disabled-medal-clicked` to parent view
+             * @param {Event} e Event triggered by clicking on a disabled medal
+             *     of a completed challenge set.
+             */
+            _onDisabledMedalClicked (e) {
+                this.dispatchEvent(
+                    new CustomEvent('disabled-medal-clicked', e)
+                );
             }
         });
     </script>
