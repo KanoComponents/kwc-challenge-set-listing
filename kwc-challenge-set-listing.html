@@ -23,6 +23,9 @@ To display all the step-by-step challenge sets available to the user
         <template is="dom-repeat" items="[[challengeSets]]" as="challengeSet">
 
             <kwc-challenge-set
+                complete-icon-url="[[completeIconUrl]]"
+                locked-icon-url="[[lockedIconUrl]]"
+                current-icon-url="[[currentIconUrl]]"
                 label="Challenge Set"
                 challenge-set="[[challengeSet]]"
                 progress="[[_computeCategoryProgress(challengeSet.category, completedChallenges)]]"
@@ -92,6 +95,27 @@ To display all the step-by-step challenge sets available to the user
                 showMedals: {
                     type: Boolean,
                     value: false
+                },
+                /*
+                 * A url to use for completed challenges in the progess bar
+                 */
+                completeIconUrl: {
+                    type: String,
+                    value: null
+                },
+                /*
+                 * A url for an icon to use for the current challenge in the progress bar.
+                 */
+                currentIconUrl: {
+                    type: String,
+                    value: null
+                },
+                /*
+                 * A url for an icon to used for locked challenges on the progress bar.
+                 */
+                lockedIconUrl: {
+                    type: String,
+                    value: null
                 }
             },
             /**
